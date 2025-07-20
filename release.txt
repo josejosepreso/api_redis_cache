@@ -1,0 +1,11 @@
+docker buildx build --platform linux/amd64 -t seriesapi:latest . --load
+
+docker run -d -p 8000:8000 --name seriesapi-container --env-file .env seriesapi:latest
+
+az acr login --name acrexpetosdev
+
+docker tag seriesapi:latest acrexpetosdev.azurecr.io/seriesapi:latest
+docker tag seriesapi:latest acrexpetosdev.azurecr.io/seriesapi:0.0.1
+
+docker push acrexpetosdev.azurecr.io/seriesapi:latest
+docker push acrexpetosdev.azurecr.io/seriesapi:0.0.1
