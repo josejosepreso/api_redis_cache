@@ -38,11 +38,11 @@ async def register_user_firebase(user: UserRegister) -> dict:
             detail=f"Error al registrar usuario: {e}"
         )
 
-    query = f" exec series.users_insert ?, ?, ?, ? "
+    query = f" EXEC USERS.USER_INSERT ?, ?, ?, ? "
     params = (
-        user_record.email,
         user.first_name,
         user.last_name,
+        user_record.email,
         user.active
     )
     try:
@@ -71,27 +71,31 @@ async def login_user_firebase(user: UserLogin):
             detail=f"Error al autenticar usuario: {response_data['error']['message']}"
         )
 
-    query = f"""select
-                    email
-                    , firstname
-                    , lastname
-                    , active
-                    , [admin]
-                from [series].[users]
-                where email = ?
+    query = f"""SELECT
+                    EMAIL
+                    , FIRST_NAME
+                    , LAST_NAME
+                    , IS_ACTIVE
+                    , IS_ADMIN
+                FROM [USERS].[USERS]
+                WHERE EMAIL = ?
                 """
 
     try:
         result_json = await execute_query_json(query, (user.email,), needs_commit=False)
         result_dict = json.loads(result_json)
+
+        if not result_dict:
+            raise Exception("Usuario no encontrado")
+
         return {
             "message": "Usuario autenticado exitosamente",
             "idToken": create_jwt_token(
-                result_dict[0]["firstname"],
-                result_dict[0]["lastname"],
+                result_dict[0]["first_name"],
+                result_dict[0]["last_name"],
                 user.email,
-                result_dict[0]["active"],
-                result_dict[0]["admin"],
+                result_dict[0]["is_active"],
+                result_dict[0]["is_admin"],
             )
         }
     except Exception as e:

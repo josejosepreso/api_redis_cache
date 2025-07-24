@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+curl -w "@curl-format.txt" -s 0.0.0.0:8000/catalog

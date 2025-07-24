@@ -39,7 +39,7 @@ class Product(BaseModel):
         default = None
     )
 
-    primary_ingredients: Optional['str'] = Field(
+    primary_ingredient: Optional['str'] = Field(
         default = None
     )
 

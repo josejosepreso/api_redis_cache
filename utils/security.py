@@ -90,7 +90,6 @@ def validateadmin(func):
         if schema.lower() != "bearer":
             raise HTTPException(status_code=400, detail="Invalid auth schema" )
 
-
         try:
             payload = jwt.decode( token , SECRET_KEY , algorithms=["HS256"] )
             email = payload.get("email")

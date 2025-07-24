@@ -32,7 +32,6 @@ async def get_db_connection():
          raise
 
 async def execute_query_json(sql_template, params=None, needs_commit=False):
-
     conn = None
     cursor = None
     try:

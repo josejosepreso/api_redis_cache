@@ -14,7 +14,7 @@ class UserLogin(BaseModel):
         description="Contraseña del usuario, debe tener entre 8 y 64 caracteres incluir por lo menos un numero, por lo menos una mayuscula y por lo menos un caracter especial."
     )
 
-    @field_validator('password')
+    @field_validator("password")
     @classmethod
     def validate_password_complexity(cls, value: str):
         if not re.search(r"[A-Z]", value):

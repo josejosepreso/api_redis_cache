@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 
 from controllers.firebase import register_user_firebase, login_user_firebase
-from controllers.product import get_products, create_product
+from controllers.product import get_products, create_product, get_product
 
 from models.userregister import UserRegister
 from models.userlogin import UserLogin
@@ -66,14 +66,20 @@ async def login(user: UserLogin):
     result = await login_user_firebase(user)
     return result
 
+@app.get("/catalog/{product_id}")
+async def get_product_by_id(product_id: int):
+    return await get_product(product_id)
 
-@app.get("/products")
-async def get_all_products() -> list[Product]:
-    """Get all products"""
-    products: list[Product] = await get_products()
-    return products
+@app.get("/catalog")
+async def get_all_products(
+        dosage_form: str | None = None,
+        is_discontinued: bool | None = None,
+        pack_unit: str | None = None,
+        therapeutic_class: str | None = None
+):
+    return await get_products(dosage_form, is_discontinued, pack_unit, therapeutic_class)
 
-@app.post("/products", response_model=Product, status_code=201)
+@app.post("/catalog", response_model = Product, status_code=201)
 @validateadmin
 async def create_new_product(request: Request, response: Response, product_data: Product) -> Product:
     product = await create_product(product_data)
