@@ -2,9 +2,11 @@
 # curl -H "Content-Type: application/json" \
 #      -X POST \
 #      -d '{"email": "jrbautista@gmail.com","password": "Abc123!Abc123","first_name": "Jose","last_name": "Bautista"}' \
-#      0.0.0.0:8000/signup
+#      0.0.0.0:8000/signup \
+#      | jq
 
 curl -H "Content-Type: application/json" \
      -X POST \
      -d '{"email": "prueba@gmail.com","password": "Abc123!Abc123","first_name": "Prueba","last_name": "Prueba"}' \
-     0.0.0.0:8000/signup
+     0.0.0.0:8000/signup \
+		 | jq

@@ -1,10 +1,11 @@
 #!/usr/bin/sh
-# curl -H "Content-Type: application/json" \
-#      -X POST \
-#      -d '{"email": "jrbautista@gmail.com","password": "Abc123!Abc123"}' \
-#      0.0.0.0:8000/login
-
 curl -H "Content-Type: application/json" \
      -X POST \
-     -d '{"email": "prueba@gmail.com","password": "Abc123!Abc123"}' \
+     -d '{"email": "jrbautista@gmail.com","password": "Abc123!Abc123"}' \
      0.0.0.0:8000/login
+
+# curl -H "Content-Type: application/json" \
+#      -X POST \
+#      -d '{"email": "prueba@gmail.com","password": "Abc123!Abc123"}' \
+#      0.0.0.0:8000/login \
+# 		 | jq

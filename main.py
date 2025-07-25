@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 
 from controllers.firebase import register_user_firebase, login_user_firebase
-from controllers.product import get_products, create_product, get_product
+from controllers.product import get_products, create_product
 
 from models.userregister import UserRegister
 from models.userlogin import UserLogin
@@ -42,36 +42,30 @@ else:
     logger.warning("Application Insight disabled")
 
 @app.get("/health")
-async def health_check():
+async def _():
     return {
         "status": "healthy"
         , "version": "0.0.1"
     }
 
 @app.get("/")
-async def read_root(request: Request, response: Response):
+async def _(request: Request, response: Response):
     return {
         "hello": "world"
     }
 
-
 @app.post("/signup")
-async def signup(user: UserRegister):
+async def _(user: UserRegister):
     result = await register_user_firebase(user)
     return result
 
-
 @app.post("/login")
-async def login(user: UserLogin):
+async def _(user: UserLogin):
     result = await login_user_firebase(user)
     return result
 
-@app.get("/catalog/{product_id}")
-async def get_product_by_id(product_id: int):
-    return await get_product(product_id)
-
 @app.get("/catalog")
-async def get_all_products(
+async def _(
         dosage_form: str | None = None,
         is_discontinued: bool | None = None,
         pack_unit: str | None = None,
@@ -81,7 +75,7 @@ async def get_all_products(
 
 @app.post("/catalog", response_model = Product, status_code=201)
 @validateadmin
-async def create_new_product(request: Request, response: Response, product_data: Product) -> Product:
+async def _(request: Request, response: Response, product_data: Product) -> Product:
     product = await create_product(product_data)
     return product
 

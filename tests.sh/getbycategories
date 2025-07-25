@@ -1,4 +1,4 @@
 #!/usr/bin/sh
 # curl -w "@curl-format.txt" -s 0.0.0.0:8000/catalog?dosage_form=tablet
 curl -w "@curl-format.txt" -s "0.0.0.0:8000/catalog?dosage_form=tablet&is_discontinued=0&pack_unit=strip"
-# curl -w "@curl-format.txt" -s 0.0.0.0:8000/catalog?therapeutic_class=antibiotic
+#curl -w "@curl-format.txt" -s 0.0.0.0:8000/catalog?therapeutic_class=antibiotic

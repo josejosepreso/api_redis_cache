@@ -1,11 +1,9 @@
-docker buildx build --platform linux/amd64 -t seriesapi:latest . --load
+docker buildx build --platform linux/amd64 -t productsapi:latest . --load
 
-docker run -d -p 8000:8000 --name seriesapi-container --env-file .env seriesapi:latest
+docker run -d -p 8000:8000 --name productsapi-container --env-file .env productsapi:latest
 
-az acr login --name acrexpetosdev
+az acr login --name acrindianpharmadev
 
-docker tag seriesapi:latest acrexpetosdev.azurecr.io/seriesapi:latest
-docker tag seriesapi:latest acrexpetosdev.azurecr.io/seriesapi:0.0.1
+docker tag productsapi:latest acrindianpharmadev.azurecr.io/productsapi:latest
 
-docker push acrexpetosdev.azurecr.io/seriesapi:latest
-docker push acrexpetosdev.azurecr.io/seriesapi:0.0.1
+docker push acrindianpharmadev.azurecr.io/productsapi:latest

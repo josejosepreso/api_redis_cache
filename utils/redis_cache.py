@@ -74,6 +74,6 @@ def store_in_cache(redis_client, cache_key: str, data: list[dict], expiration: i
     try:
         json_data = json.dumps(data, default=str)  # Handle datetime objects
         redis_client.setex(cache_key, expiration, json_data)
-        logger.info(f"✅ Series catalog cached for {expiration} seconds")
+        logger.info(f"✅ Cached for {expiration} seconds")
     except Exception as e:
-        logger.warning(f"⚠️ Failed to cache series catalog: {str(e)}")
+        logger.warning(f"⚠️ Failed to cache: {str(e)}")

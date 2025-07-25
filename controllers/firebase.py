@@ -38,7 +38,7 @@ async def register_user_firebase(user: UserRegister) -> dict:
             detail=f"Error al registrar usuario: {e}"
         )
 
-    query = f" EXEC USERS.USER_INSERT ?, ?, ?, ? "
+    query = f" EXEC users.USER_INSERT ?, ?, ?, ? "
     params = (
         user.first_name,
         user.last_name,
@@ -72,12 +72,12 @@ async def login_user_firebase(user: UserLogin):
         )
 
     query = f"""SELECT
-                    EMAIL
-                    , FIRST_NAME
-                    , LAST_NAME
-                    , IS_ACTIVE
-                    , IS_ADMIN
-                FROM [USERS].[USERS]
+                EMAIL
+                , FIRST_NAME
+                , LAST_NAME
+                , IS_ACTIVE
+                , IS_ADMIN
+                FROM users.USERS
                 WHERE EMAIL = ?
                 """
 
@@ -91,11 +91,11 @@ async def login_user_firebase(user: UserLogin):
         return {
             "message": "Usuario autenticado exitosamente",
             "idToken": create_jwt_token(
-                result_dict[0]["first_name"],
-                result_dict[0]["last_name"],
+                result_dict[0]["FIRST_NAME"],
+                result_dict[0]["LAST_NAME"],
                 user.email,
-                result_dict[0]["is_active"],
-                result_dict[0]["is_admin"],
+                result_dict[0]["IS_ACTIVE"],
+                result_dict[0]["IS_ADMIN"],
             )
         }
     except Exception as e:
