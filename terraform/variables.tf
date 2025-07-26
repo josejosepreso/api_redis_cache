@@ -35,3 +35,47 @@ variable "admin_sql_password"{
     type = string
     description = "The password for the SQL administrator"
 }
+
+variable "SQL_DRIVER" {
+    type = string
+}
+
+variable "SQL_SERVER" {
+    type = string
+}
+
+variable "SQL_DATABASE" {
+    type = string
+}
+
+variable "SQL_USERNAME" {
+    type = string
+}
+
+variable "FIREBASE_API_KEY" {
+    type = string
+}
+
+variable "SECRET_KEY" {
+    type = string
+}
+
+variable "APPLICATIONINSIGHTS_CONNECTION_STRING" {
+    type = string
+}
+
+variable "REDIS_CONNECTION_STRING" {
+    type = string
+}
+
+variable "DOCKER_REGISTRY_SERVER_URL" {
+    type = string
+}
+
+variable "DOCKER_REGISTRY_SERVER_USERNAME" {
+    type = string
+}
+
+variable "DOCKER_REGISTRY_SERVER_PASSWORD" {
+    type = string
+}
