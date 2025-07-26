@@ -2,10 +2,10 @@
 
 # admin
 curl -H "Content-Type: application/json" \
-     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3NlIiwibGFzdG5hbWUiOiJCYXV0aXN0YSIsImVtYWlsIjoianJiYXV0aXN0YUBnbWFpbC5jb20iLCJhY3RpdmUiOnRydWUsImFkbWluIjp0cnVlLCJleHAiOjE3NTM0NzAxMDgsImlhdCI6MTc1MzQ2NjUwOH0.2AB2l_gh89sbrkFNOzLnn_Sm4t-ZK2RYEM7ZLiJQrdA" \
+     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJKb3NlIiwibGFzdG5hbWUiOiJCYXV0aXN0YSIsImVtYWlsIjoianJiYXV0aXN0YUBnbWFpbC5jb20iLCJhY3RpdmUiOnRydWUsImFkbWluIjp0cnVlLCJleHAiOjE3NTM1NDIwMDgsImlhdCI6MTc1MzUzODQwOH0.wcYcJBj25FH33IJ0f9NACo90-hoilRZ-CrkD56rAPu8" \
      -X POST \
      -d '{"product_id": 111,"brand_name": "Amoxicillin + Clavulanic Acid",  "manufacturer": "Sun Pharma",  "price_inr": 120.00,  "is_discontinued": 0,  "dosage_form": "tablet",  "pack_size": 6,  "pack_unit": "units",  "num_active_ingredients": 2,  "primary_ingredient": "Amoxicillin",  "primary_strength": "500mg + 125mg",  "active_ingredients": "Amoxicillin, Clavulanic Acid",  "therapeutic_class": "antibiotic",  "packaging_raw": "Strip of 6 tablets",  "manufacturer_raw": "Sun Pharmaceutical Industries Ltd."}' \
-     0.0.0.0:8000/catalog \
+     0.0.0.0:80/catalog \
 		 | jq
 
 # non admin
@@ -13,5 +13,5 @@ curl -H "Content-Type: application/json" \
 #      -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJQcnVlYmEiLCJsYXN0bmFtZSI6IlBydWViYSIsImVtYWlsIjoicHJ1ZWJhQGdtYWlsLmNvbSIsImFjdGl2ZSI6dHJ1ZSwiYWRtaW4iOmZhbHNlLCJleHAiOjE3NTMzODIxOTAsImlhdCI6MTc1MzM3ODU5MH0.vDOK2B6yndKA5T2NKn0cgTpY-uAfYoEpOw3T4Yz6Bjw" \
 #      -X POST \
 #      -d '{"product_id": 1,"brand_name": "Amoxicillin + Clavulanic Acid",  "manufacturer": "Sun Pharma",  "price_inr": 120.00,  "is_discontinued": 0,  "dosage_form": "Tablet",  "pack_size": 6,  "pack_unit": "units",  "num_active_ingredients": 2,  "primary_ingredient": "Amoxicillin",  "primary_strength": "500mg + 125mg",  "active_ingredients": "Amoxicillin, Clavulanic Acid",  "therapeutic_class": "Antibiotic",  "packaging_raw": "Strip of 6 tablets",  "manufacturer_raw": "Sun Pharmaceutical Industries Ltd."}' \
-#      0.0.0.0:8000/catalog \
+#      0.0.0.0:80/catalog \
 # 		 | jq

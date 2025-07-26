@@ -2,7 +2,7 @@ resource "azurerm_service_plan" "sp" {
     name = "sp-${ var.project }-${ var.environment }"
     location = var.location
     resource_group_name = azurerm_resource_group.rg.name
-    sku_name = "F1"
+    sku_name = "B1"
     os_type = "Linux"
 
     tags = var.tags
@@ -15,7 +15,7 @@ resource "azurerm_linux_web_app" "webappapi" {
     service_plan_id = azurerm_service_plan.sp.id
 
     site_config {
-        always_on = false
+        always_on = true
         application_stack {
             docker_registry_url = "https://index.docker.io"
             docker_image_name = "nginx:latest"
